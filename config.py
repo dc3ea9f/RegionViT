@@ -83,6 +83,11 @@ _C.MODEL.SWIN_MLP.MLP_RATIO = 4.
 _C.MODEL.SWIN_MLP.APE = False
 _C.MODEL.SWIN_MLP.PATCH_NORM = True
 
+# RegionViT parameters
+_C.MODEL.REGION_VIT = CN()
+_C.MODEL.REGION_VIT.LOCAL_TOKENIZATION_METHOD = '3-conv'
+_C.MODEL.REGION_VIT.REGIONAL_TOKENIZATION_METHOD = 'linear'
+
 # -----------------------------------------------------------------------------
 # Training settings
 # -----------------------------------------------------------------------------

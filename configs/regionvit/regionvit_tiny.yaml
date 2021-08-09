@@ -1,0 +1,12 @@
+MODEL:
+  TYPE: regionvit
+  NAME: regionvit_tiny_patch4_window7_224
+  DROP_PATH_RATE: 0.1
+  SWIN:
+    EMBED_DIM: 64
+    DEPTHS: [ 2, 2, 8, 2 ]
+    NUM_HEADS: [ 2, 4, 8, 16 ]
+    WINDOW_SIZE: 7
+  REGION_VIT:
+    LOCAL_TOKENIZATION_METHOD: 3-conv
+    REGIONAL_TOKENIZATION_METHOD: linear
