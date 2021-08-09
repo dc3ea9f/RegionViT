@@ -13,7 +13,21 @@ This repo only contain the implementation of the RegionViT for image classificat
 Since the implementation is largely based on [Microsoft/Swin-Transformer](https://github.com/microsoft/Swin-Transformer) 
 and the code structure is well maintained. You can refer to [this doc](https://github.com/microsoft/Swin-Transformer/blob/main/get_started.md).
 
-Just change the config file to `configs/regionvit/{}.yaml` for RegionViT.
+Just change the config file to `configs/regionvit/{Ti/S/M/B}.yaml` for RegionViT.
+
+For example, to train a `RegionViT-Ti` on ImageNet from scratch, run:
+```bash
+python -m torch.distributed.launch --nproc_per_node <num-of-gpus-to-use> --master_port 12345  main.py \ 
+--cfg configs/regionvit/regionvit_tiny.yaml --data-path <imagenet-path> [--batch-size <batch-size-per-gpu> --output <output-directory> --tag <job-tag>]
+```
+
+The details of model config can be found in Table 2 of the paper.
+
+## Results
+### RegionViT-Ti
+Train on two 4xV100 Machines with batch size 96 (actually 96x4x2) and 50 warmup epochs, can reach 80.368% top-1 accuracy (80.4% reported in paper).
+
+![train log](figures/train_log.svg)
 
 ## Some Issues
 1. The instance repetition haven't been implemented (Table 11 in paper).
