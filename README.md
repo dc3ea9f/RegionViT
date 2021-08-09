@@ -30,5 +30,5 @@ Just change the config file to `configs/regionvit/{}.yaml` for RegionViT.
 ```
 
 ## Acknowledgements
-Repo [Microsoft/Swin-Transformer](https://github.com/microsoft/Swin-Transformer) really helps a lot when implementation the code.
+Repo [Microsoft/Swin-Transformer](https://github.com/microsoft/Swin-Transformer) really helps a lot when implement the code.
 
