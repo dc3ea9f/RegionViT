@@ -10,7 +10,6 @@ import time
 import argparse
 import datetime
 import numpy as np
-import git
 
 import torch
 import torch.backends.cudnn as cudnn
@@ -68,18 +67,6 @@ def parse_option():
     parser.add_argument("--local_rank", type=int, required=True, help='local rank for DistributedDataParallel')
 
     args, unparsed = parser.parse_known_args()
-
-    # get & show branch information and latest commit id
-    repo = git.Repo(search_parent_directories=True)
-    branch = repo.active_branch
-    branch_name = branch.name
-    latest_commit_sha = repo.head.object.hexsha
-    args.git_branch_name = branch_name
-    args.git_latest_commit_sha = latest_commit_sha
-    print("Branch: {}".format(args.git_branch_name))
-    print("Latest commit SHA: {}".format(args.git_latest_commit_sha))
-
-    assert not repo.is_dirty(), 'force git repo not dirty'
 
     config = get_config(args)
 

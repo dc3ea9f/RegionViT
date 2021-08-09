@@ -163,13 +163,6 @@ _C.TEST = CN()
 _C.TEST.CROP = True
 
 # -----------------------------------------------------------------------------
-# Git information
-# -----------------------------------------------------------------------------
-_C.GIT = CN()
-_C.GIT.BRANCH = 'main'
-_C.GIT.LATEST_COMMIT_SHA = '86d4625c0cd561180a8eb2d63807d0a31879c685'
-
-# -----------------------------------------------------------------------------
 # Misc
 # -----------------------------------------------------------------------------
 # Mixed precision opt level, if O0, no amp is used ('O0', 'O1', 'O2')
@@ -240,10 +233,6 @@ def update_config(config, args):
         config.EVAL_MODE = True
     if args.throughput:
         config.THROUGHPUT_MODE = True
-    if args.git_branch_name:
-        config.GIT.BRANCH = args.git_branch_name
-    if args.git_latest_commit_sha:
-        config.GIT.LATEST_COMMIT_SHA = args.git_latest_commit_sha
 
     # set local rank for distributed training
     config.LOCAL_RANK = args.local_rank
