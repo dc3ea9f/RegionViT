@@ -1,7 +1,3 @@
-# Custom files for training
-saved/
-running/
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -16,7 +16,6 @@ from timm.data import create_transform
 from timm.data.transforms import _pil_interp
 
 from .cached_image_folder import CachedImageFolder
-from .our_dataset import OurDataset
 from .samplers import SubsetRandomSampler
 
 
@@ -73,10 +72,15 @@ def build_loader(config):
 def build_dataset(is_train, config):
     transform = build_transform(is_train, config)
     if config.DATA.DATASET == 'imagenet':
-        prefix = 'train' if is_train else 'test'
-        img_dir = os.path.join(config.DATA.DATA_PATH, 'all/')
-        anno_file = os.path.join(config.DATA.DATA_PATH, prefix + '.txt')
-        dataset = OurDataset(config.DATA.DATA_PATH, img_dir, anno_file, transform=transform)
+        prefix = 'train' if is_train else 'val'
+        if config.DATA.ZIP_MODE:
+            ann_file = prefix + "_map.txt"
+            prefix = prefix + ".zip@/"
+            dataset = CachedImageFolder(config.DATA.DATA_PATH, ann_file, prefix, transform,
+                                        cache_mode=config.DATA.CACHE_MODE if is_train else 'part')
+        else:
+            root = os.path.join(config.DATA.DATA_PATH, prefix)
+            dataset = datasets.ImageFolder(root, transform=transform)
         nb_classes = 1000
     else:
         raise NotImplementedError("We only support ImageNet Now.")
