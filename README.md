@@ -25,7 +25,7 @@ The details of model config can be found in Table 2 of the paper.
 
 ## Results
 ### RegionViT-Ti
-Train on two 4xV100 Machines with batch size 96 (actually 96x4x2) and 50 warmup epochs, can reach 80.368% top-1 accuracy (80.4% reported in paper).
+Train on two 4xV100 Machines with batch size 128 (actually 128x4x2) and 20 warmup epochs (same to Swin-Transformer), can reach 80.504% top-1 accuracy (80.4% reported in paper).
 
 ![train log](figures/train_log.svg)
 
